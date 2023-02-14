@@ -1,0 +1,53 @@
+<html>
+
+<head>
+<title>Incredibly Simple Shopping</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="main.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="pb-2 mt-4 mb-2">
+	<h1>Buy More!</h1>
+</div>
+
+<div class="row col-8">
+<table class="table">
+
+<thead>
+	<tr>
+		<th></th>
+		<th>Name</th>
+		<th class="price">Price</th>
+	</tr>
+</thead>
+
+<!-- 
+	generate these table rows from the database
+-->
+
+<% for (let items of list) { %>
+	<tr>
+		<td rowspan="2">
+			<img class="thumb" src= <%= items.img %>>
+		</td>
+		<td><span class="name"><a href="/item_view/<%= items.id %>"><%= items.item %></a></span></td>
+		<td class="price"><%= items.price %></td>
+	</tr>
+	<tr><td colspan="2"><%= items.desc %></td></tr>
+<% } %>
+
+<!-- end generating table rows -->
+
+</table>
+
+</div>
+
+</body>
+
+</html>

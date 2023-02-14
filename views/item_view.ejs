@@ -1,0 +1,80 @@
+<html>
+
+<head>
+<title>Incredibly Simple Shopping</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="/main.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="pb-2 mt-4 mb-2 border-bottom">
+	<h1><%= list.item %></h1>
+	<form action="/items" method="GET">
+		<button type="submit" class="btn btn-link">(back)</button>
+	</form>
+</div>
+
+<div class="row">
+	<div class="col-4">
+		<img class="img-fluid" src="<%= list.img %>">
+	</div>
+
+	<div class="col-4">
+		<div><%= list.desc %></div>
+		<div><em><%= list.price %></em></div>
+	</div>
+</div>
+
+<div class="row my-4">
+	<div class="col-8">
+		<h3>Reviews</h3>
+
+		<div class="card w-100 mt-3">
+			<div class="card-body">
+				<form action="/item_view/post/<%= list.id %>" method="POST">
+					<div class="form-group">
+						<label>Add your review!</label>
+					 	<input class="form-control mb-1" placeholder="Name" name="Username"/>
+					 </div>
+					 <div class="form-group">
+						<textarea class="form-control mb-1" placeholder="Review" name="Reviews"></textarea>
+					 </div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<% if (list.alert == true) { %>
+			<div class="alert alert-secondary" role="alert">No Username or Password</div>
+		<% } %>
+
+		<% for (let items of rlist) { %>
+		<div class="card w-100 mt-3">
+			<div class="card-header">
+				<em><%= items.name %></em>
+			</div>
+
+			<div class="card-body">
+				<p><%= items.review %></p>
+			</div>
+		</div>
+		<% } %>
+
+			</div>
+		</div>
+
+	</div>
+</div>
+
+</div>
+
+</body>
+
+</html>
